@@ -35,10 +35,12 @@ public class AccessOpenAPIRESTService {
 		List providers = new ArrayList();
 		providers.add(provider);
 
-		// TODO: provide the url for the api
+		// TODO: provide the url where your api is available
 		DefaultApi serviceProxy = JAXRSClientFactory.create("http://localhost:7075/", DefaultApi.class, providers);
 		
 		// TODO: access the api using the proxy object. Note that for attributes with primitive types default values might need to be set
+
+		// TODO: the following code is based on the sample api.yaml provided with the project. remove it with our own one.
 		ProductComposite composite = new ProductComposite();
 		composite.setId(0);
 		composite.setName("composite");
