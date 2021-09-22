@@ -10,8 +10,11 @@ import org.apache.logging.log4j.Logger;
 
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.dieschnittstelle.ess.openapi.client.api.DefaultApi;
+import org.dieschnittstelle.ess.openapi.client.model.ProductComposite;
+import org.dieschnittstelle.ess.openapi.client.model.ProductPart;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AccessOpenAPIRESTService {
@@ -33,9 +36,22 @@ public class AccessOpenAPIRESTService {
 		providers.add(provider);
 
 		// TODO: provide the url for the api
-		DefaultApi serviceProxy = JAXRSClientFactory.create("url-of-api-to-be-accessed", DefaultApi.class, providers);
+		DefaultApi serviceProxy = JAXRSClientFactory.create("http://localhost:7075/", DefaultApi.class, providers);
 		
-		// TODO: access the api using the proxy object
+		// TODO: access the api using the proxy object. Note that for attributes with primitive types default values might need to be set
+		ProductComposite composite = new ProductComposite();
+		composite.setId(0);
+		composite.setName("composite");
+		ProductPart part1 = new ProductPart();
+		part1.setName("part1");
+		part1.setId(0);
+		ProductPart part2 = new ProductPart();
+		part2.setName("part2");
+		part2.setId(0);
+		composite.setParts(Arrays.asList(part1,part2));
+
+		System.out.println("created: " + toSinglelineString(serviceProxy.createProductComposite1(composite)));
+		System.out.println("read: " + toSinglelineString(serviceProxy.readAllProductComposites1()));
 	}
 
 	public static String toSinglelineString(Object obj) {

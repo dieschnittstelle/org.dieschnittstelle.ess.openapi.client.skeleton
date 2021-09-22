@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/opi-client.iml" filepath="$PROJECT_DIR$/opi-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openapi-client-skeleton.iml" filepath="$PROJECT_DIR$/openapi-client-skeleton.iml" />
     </modules>
   </component>
 </project>
