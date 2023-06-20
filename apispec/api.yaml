@@ -1,299 +1,195 @@
 ---
-openapi: "3.0.1"
+openapi: 3.0.3
+info:
+  title: Generated API
+  version: "1.0"
 paths:
-  /api/opi/Products/{id}:
+  /api/MyDataItemNames:
     get:
-      parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        style: "simple"
-        schema:
-          type: "integer"
       responses:
         "200":
+          description: OK
           content:
             application/json:
               schema:
-                type: "object"
-                $ref: "#/components/schemas/ProductComposite"
-          description: "default response"
-        default:
+                type: array
+                items:
+                  type: string
+  /api/MyDataItems:
+    get:
+      responses:
+        "200":
+          description: OK
           content:
             application/json:
               schema:
-                type: "object"
-                $ref: "#/components/schemas/ProductComposite"
-          description: "default response"
-      operationId: "readProductComposite_1"
+                type: array
+                items:
+                  $ref: '#/components/schemas/MyDataItemComposite'
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MyDataItemComposite'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyDataItemComposite'
+  /api/MyDataItems/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            format: int64
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyDataItemComposite'
     put:
       parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        style: "simple"
-        schema:
-          type: "integer"
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: "object"
-                $ref: "#/components/schemas/ProductComposite"
-          description: "default response"
-        default:
-          content:
-            application/json:
-              schema:
-                type: "object"
-                $ref: "#/components/schemas/ProductComposite"
-          description: "default response"
-      operationId: "updateProductComposite_1"
+        - name: id
+          in: path
+          required: true
+          schema:
+            format: int64
+            type: integer
       requestBody:
         content:
           application/json:
             schema:
-              type: "object"
-              $ref: "#/components/schemas/ProductComposite"
-        required: true
+              $ref: '#/components/schemas/MyDataItemComposite'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyDataItemComposite'
     delete:
       parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        style: "simple"
-        schema:
-          type: "integer"
+        - name: id
+          in: path
+          required: true
+          schema:
+            format: int64
+            type: integer
       responses:
         "200":
+          description: OK
           content:
             application/json:
               schema:
-                type: "boolean"
-          description: "default response"
-        default:
-          content:
-            application/json:
-              schema:
-                type: "boolean"
-          description: "default response"
-      operationId: "deleteProductComposite_1"
-  /api/opi/Products:
+                type: boolean
+  /api/opi/MyDataItems:
     get:
-      parameters: []
+      operationId: readAllMyDataItemComposites
       responses:
         "200":
+          description: OK
           content:
             application/json:
               schema:
-                type: "array"
+                type: array
                 items:
-                  type: "object"
-                  $ref: "#/components/schemas/ProductComposite"
-          description: "default response"
-        default:
-          content:
-            application/json:
-              schema:
-                type: "array"
-                items:
-                  type: "object"
-                  $ref: "#/components/schemas/ProductComposite"
-          description: "default response"
-      operationId: "readAllProductComposites_1"
+                  $ref: '#/components/schemas/MyDataItemComposite'
     post:
-      parameters: []
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: "object"
-                $ref: "#/components/schemas/ProductComposite"
-          description: "default response"
-        default:
-          content:
-            application/json:
-              schema:
-                type: "object"
-                $ref: "#/components/schemas/ProductComposite"
-          description: "default response"
-      operationId: "createProductComposite_1"
+      operationId: createMyDataItemComposite
       requestBody:
         content:
           application/json:
             schema:
-              type: "object"
-              $ref: "#/components/schemas/ProductComposite"
-        required: true
-  /api/health:
+              $ref: '#/components/schemas/MyDataItemComposite'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyDataItemComposite'
+  /api/opi/MyDataItems/{id}:
     get:
-      parameters: []
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                properties: {}
-                type: "object"
-                nullable: true
-          description: "default response"
-        default:
-          content:
-            application/json:
-              schema:
-                properties: {}
-                type: "object"
-                nullable: true
-          description: "default response"
-      operationId: "getChecks"
-  /api/metrics/{registry}/{metric}:
-    get:
+      operationId: readMyDataItemComposite
       parameters:
-      - name: "registry"
-        in: "path"
-        required: true
-        style: "simple"
-        schema:
-          type: "string"
-      - name: "metric"
-        in: "path"
-        required: true
-        style: "simple"
-        schema:
-          type: "string"
+        - name: id
+          in: path
+          required: true
+          schema:
+            format: int64
+            type: integer
       responses:
         "200":
+          description: OK
           content:
-            text/plain:
+            application/json:
               schema:
-                type: "string"
-          description: "default response"
-        default:
-          content:
-            text/plain:
-              schema:
-                type: "string"
-          description: "default response"
-      operationId: "getText_1_2"
-    options:
+                $ref: '#/components/schemas/MyDataItemComposite'
+    put:
+      operationId: updateMyDataItemComposite
       parameters:
-      - name: "registry"
-        in: "path"
-        required: true
-        style: "simple"
-        schema:
-          type: "string"
-      - name: "metric"
-        in: "path"
-        required: true
-        style: "simple"
-        schema:
-          type: "string"
+        - name: id
+          in: path
+          required: true
+          schema:
+            format: int64
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MyDataItemComposite'
       responses:
         "200":
+          description: OK
           content:
             application/json:
               schema:
-                type: "object"
-                $ref: "#/components/schemas/java_lang_Object"
-          description: "default response"
-        default:
-          content:
-            application/json:
-              schema:
-                type: "object"
-                $ref: "#/components/schemas/java_lang_Object"
-          description: "default response"
-      operationId: "getMetadata"
-  /api/metrics:
-    get:
-      parameters: []
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                type: "string"
-          description: "default response"
-        default:
-          content:
-            text/plain:
-              schema:
-                type: "string"
-          description: "default response"
-      operationId: "getText"
-  /api/metrics/{registry}:
-    get:
+                $ref: '#/components/schemas/MyDataItemComposite'
+    delete:
+      operationId: deleteMyDataItemComposite
       parameters:
-      - name: "registry"
-        in: "path"
-        required: true
-        style: "simple"
-        schema:
-          type: "string"
+        - name: id
+          in: path
+          required: true
+          schema:
+            format: int64
+            type: integer
       responses:
         "200":
+          description: OK
           content:
             application/json:
               schema:
-                type: "object"
-                $ref: "#/components/schemas/java_lang_Object"
-          description: "default response"
-        default:
-          content:
-            application/json:
-              schema:
-                type: "object"
-                $ref: "#/components/schemas/java_lang_Object"
-          description: "default response"
-      operationId: "getJson_1_2"
-    options:
-      parameters:
-      - name: "registry"
-        in: "path"
-        required: true
-        style: "simple"
-        schema:
-          type: "string"
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: "object"
-                $ref: "#/components/schemas/java_lang_Object"
-          description: "default response"
-        default:
-          content:
-            application/json:
-              schema:
-                type: "object"
-                $ref: "#/components/schemas/java_lang_Object"
-          description: "default response"
-      operationId: "getMetadata_1"
+                type: boolean
 components:
   schemas:
-    ProductComposite:
+    MyDataItemComposite:
+      type: object
       properties:
-        name:
-          type: "string"
+        id:
+          format: int64
+          type: integer
         parts:
-          type: "array"
+          uniqueItems: true
+          type: array
           items:
-            type: "object"
-            $ref: "#/components/schemas/ProductPart"
-        id:
-          type: "integer"
-      type: "object"
-    ProductPart:
-      properties:
+            $ref: '#/components/schemas/MyDataItemPart'
         name:
-          type: "string"
+          type: string
+    MyDataItemPart:
+      type: object
+      properties:
         id:
-          type: "integer"
-      type: "object"
-    java_lang_Object:
-      properties: {}
-      type: "object"
+          format: int64
+          type: integer
+        name:
+          type: string

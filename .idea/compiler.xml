@@ -9,8 +9,5 @@
         <module name="openapi-client-skeleton" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="openapi-client-skeleton" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

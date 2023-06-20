@@ -10,11 +10,12 @@ import org.apache.logging.log4j.Logger;
 
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.dieschnittstelle.ess.openapi.client.api.DefaultApi;
-import org.dieschnittstelle.ess.openapi.client.model.ProductComposite;
-import org.dieschnittstelle.ess.openapi.client.model.ProductPart;
+import org.dieschnittstelle.ess.openapi.client.model.MyDataItemComposite;
+import org.dieschnittstelle.ess.openapi.client.model.MyDataItemPart;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class AccessOpenAPIRESTService {
@@ -41,19 +42,19 @@ public class AccessOpenAPIRESTService {
 		// TODO: access the api using the proxy object. Note that for attributes with primitive types default values might need to be set
 
 		// TODO: the following code is based on the sample api.yaml provided with the project. remove it with our own one.
-		ProductComposite composite = new ProductComposite();
-		composite.setId(0);
+		MyDataItemComposite composite = new MyDataItemComposite();
+		composite.setId(0L);
 		composite.setName("composite");
-		ProductPart part1 = new ProductPart();
+		MyDataItemPart part1 = new MyDataItemPart();
 		part1.setName("part1");
-		part1.setId(0);
-		ProductPart part2 = new ProductPart();
+		part1.setId(0L);
+		MyDataItemPart part2 = new MyDataItemPart();
 		part2.setName("part2");
-		part2.setId(0);
-		composite.setParts(Arrays.asList(part1,part2));
+		part2.setId(0L);
+		composite.setParts(new HashSet<>(Arrays.asList(part1,part2)));
 
-		System.out.println("created: " + toSinglelineString(serviceProxy.createProductComposite1(composite)));
-		System.out.println("read: " + toSinglelineString(serviceProxy.readAllProductComposites1()));
+		System.out.println("created: " + toSinglelineString(serviceProxy.createMyDataItemComposite(composite)));
+		System.out.println("read: " + toSinglelineString(serviceProxy.readAllMyDataItemComposites()));
 	}
 
 	public static String toSinglelineString(Object obj) {
